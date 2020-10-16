@@ -8,9 +8,17 @@ public class Constant {
 	/**
 	 * ip
 	 */
-	final static String IP = "127.0.0.1";
+	public static final String IP = "127.0.0.1";
 	/**
 	 * 端口号
 	 */
-	final static Integer PORT = 9999;
+	public static final Integer PORT = 9999;
+	/**
+	 * 2000毫秒
+	 */
+	public static final long SLEEP_TWO_THOUSAND = 2000;
+	/**
+	 * 打招呼
+	 */
+	public static final String SAY_HELLO = "HELLO";
 }
