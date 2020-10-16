@@ -21,4 +21,8 @@ public class Constant {
 	 * 打招呼
 	 */
 	public static final String SAY_HELLO = "HELLO";
+	/**
+	 * 最多重试5次
+	 */
+	public static final int MAX_RETRY = 5;
 }
