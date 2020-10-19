@@ -30,6 +30,7 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) throws Exception {
+                        ch.pipeline().addLast(new LifeCyCleTestHandler());
                         ch.pipeline().addLast(new NettyServerHandler());
                     }
                 });
