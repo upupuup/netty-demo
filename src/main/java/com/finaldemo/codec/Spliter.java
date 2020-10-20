@@ -1,9 +1,9 @@
 package com.finaldemo.codec;
 
+import com.finaldemo.protocol.PacketCodec;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import the.flash.protocol.PacketCodec;
 
 public class Spliter extends LengthFieldBasedFrameDecoder {
     private static final int LENGTH_FIELD_OFFSET = 7;

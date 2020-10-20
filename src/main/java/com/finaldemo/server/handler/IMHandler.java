@@ -1,6 +1,7 @@
 package com.finaldemo.server.handler;
 
 import com.finaldemo.protocol.Packet;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -14,6 +15,7 @@ import static com.finaldemo.protocol.command.Command.*;
  * @Author: jiangzhihong
  * @CreateDate: 2020/10/19 22:07
  */
+@ChannelHandler.Sharable
 public class IMHandler extends SimpleChannelInboundHandler<Packet> {
     public static final IMHandler INSTANCE = new IMHandler();
 

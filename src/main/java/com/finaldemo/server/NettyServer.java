@@ -5,12 +5,14 @@ import com.finaldemo.codec.Spliter;
 import com.finaldemo.server.handler.AuthHandler;
 import com.finaldemo.server.handler.IMHandler;
 import com.finaldemo.server.handler.LoginRequestHandler;
-import com.juejin.netty.ch9.protocol.Packet;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
+
+import java.util.Date;
 
 /**
  * @Description: 服务端
@@ -18,7 +20,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * @CreateDate: 2020/10/19 21:39
  */
 public class NettyServer {
-    private static final int PORT = 8000;
+    private static final int PORT = 8001;
 
     public static void main(String[] args) {
         NioEventLoopGroup boosGreop = new NioEventLoopGroup();
@@ -32,9 +34,9 @@ public class NettyServer {
                 .option(ChannelOption.SO_BACKLOG, 1024)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
-                .childHandler(new ChannelInitializer<NioServerSocketChannel>() {
+                .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
-                    protected void initChannel(NioServerSocketChannel ch) throws Exception {
+                    protected void initChannel(NioSocketChannel ch) throws Exception {
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
                         ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
@@ -42,6 +44,16 @@ public class NettyServer {
                         ch.pipeline().addLast(IMHandler.INSTANCE);
                     }
                 });
+        bind(serverBootstrap, PORT);
+    }
 
+    private static void bind(final ServerBootstrap serverBootstrap, final int port) {
+        serverBootstrap.bind(port).addListener(future -> {
+           if (future.isSuccess()) {
+               System.out.println(new Date() + "：端口[" + port + "]绑定成功");
+           } else {
+               System.err.println("端口[" + port + "]绑定失败");
+           }
+        });
     }
 }

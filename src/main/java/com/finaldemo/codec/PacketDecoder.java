@@ -1,9 +1,9 @@
 package com.finaldemo.codec;
 
+import com.finaldemo.protocol.PacketCodec;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
-import the.flash.protocol.PacketCodec;
 
 import java.util.List;
 

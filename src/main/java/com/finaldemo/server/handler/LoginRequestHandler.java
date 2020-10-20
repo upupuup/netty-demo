@@ -24,6 +24,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) throws Exception {
+        System.out.println("lallalalalalal");
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
         loginResponsePacket.setVersion(loginRequestPacket.getVersion());
         loginResponsePacket.setUserName(loginRequestPacket.getUserName());
@@ -35,6 +36,8 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
             System.out.println("[" + loginRequestPacket.getUserName() + "]登录成功");
             SessionUtil.bindSession(new Session(userId, loginRequestPacket.getUserName()), ctx.channel());
         }
+
+        ctx.writeAndFlush(loginResponsePacket);
     }
 
     private boolean valid(LoginRequestPacket loginRequestPacket) {

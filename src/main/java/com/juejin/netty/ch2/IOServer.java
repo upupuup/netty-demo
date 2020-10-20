@@ -9,7 +9,7 @@ import java.net.Socket;
  * Socket服务端
  * @Author:         jiangzhihong
  * @CreateDate:     2020/10/16 10:55
- * Server 端首先创建了一个serverSocket来监听 8000 端口，然后创建一个线程，线程里面不断调用阻塞方法 serversocket.accept();
+ * Server 端首先创建了一个serverSocket来监听 8001 端口，然后创建一个线程，线程里面不断调用阻塞方法 serversocket.accept();
  * 获取新的连接，见(1)，当获取到新的连接之后，给每条连接创建一个新的线程，这个线程负责从该连接中读取数据，见(2)，
  * 然后读取数据是以字节流的方式，见(3)。
  */
